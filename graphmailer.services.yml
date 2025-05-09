@@ -1,0 +1,10 @@
+# modules/custom/graphmailer/graphmailer.services.yml
+services:
+  graphmailer.mailer:
+    class: Drupal\graphmailer\GraphMailer
+    arguments:
+      - '@http_client'
+      - '@config.factory'
+      - '@logger.factory'
+    tags:
+      - { name: container.factory }

@@ -1,0 +1,15 @@
+graphmailer.settings:
+  path: '/admin/config/system/graphmailer'
+  defaults:
+    _form: '\Drupal\graphmailer\Form\GraphMailerSettingsForm'
+    _title: 'GraphMailer settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+graphmailer.test:
+  path: '/admin/config/system/graphmailer/test'
+  defaults:
+    _form: '\Drupal\graphmailer\Form\GraphMailerTestForm'
+    _title: 'Test GraphMailer'
+  requirements:
+    _permission: 'administer site configuration'

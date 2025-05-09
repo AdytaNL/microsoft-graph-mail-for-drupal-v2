@@ -1,0 +1,7 @@
+name: GraphMailer
+type: module
+description: 'Send mail via Microsoft Graph API.'
+core_version_requirement: ^9 || ^10
+package: Custom
+dependencies:
+  - mailsystem
