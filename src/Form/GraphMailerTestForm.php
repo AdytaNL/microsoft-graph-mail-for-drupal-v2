@@ -65,6 +65,13 @@ class GraphMailerTestForm extends FormBase {
       '#description'   => $this->t('Kies hier het e-mailadres dat als afzender moet worden gebruikt.'),
     ];
 
+    $form['from_name'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Afzendernaam'),
+      '#default_value' => \Drupal::config('graphmailer.settings')->get('from_name') ?? 'Website',
+      '#description' => $this->t('Naam die getoond wordt als afzender.'),
+    ];
+
     $form['to'] = [
       '#type'        => 'textfield',
       '#title'       => $this->t('Ontvangers (komma-gescheiden)'),

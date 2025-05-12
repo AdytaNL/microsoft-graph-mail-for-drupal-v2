@@ -69,6 +69,13 @@ class GraphMailerSettingsForm extends ConfigFormBase {
       '#description' => $this->t('The mailbox UPN or alias to use as sender.'),
     ];
 
+    $form['from_name'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Default "From" name'),
+      '#default_value' => $config->get('from_name') ?? '',
+      '#description' => $this->t('Optional display name to use alongside the "From" address.'),
+    ];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -87,7 +94,8 @@ class GraphMailerSettingsForm extends ConfigFormBase {
       $config->set('client_secret', $secret);
     }
 
-    $config->set('from_address', $form_state->getValue('from_address'));
+    $config->set('from_address', $form_state->getValue('from_address'))
+        ->set('from_name', $form_state->getValue('from_name'));
     $config->save();
 
     parent::submitForm($form, $form_state);

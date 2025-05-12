@@ -147,37 +147,14 @@ class GraphMailer {
     array  $attachments = [],
     ?string $fromRaw    = NULL
   ): void {
-    // Log invocation
-    file_put_contents(
-      '/tmp/graphmailer-debug.log',
-      date('c') . " - sendMail() aangeroepen\n",
-      FILE_APPEND
-    );
-
     $config      = $this->getSettings();
     $defaultFrom = $config->get('from_address');
     $raw         = $fromRaw ?: $defaultFrom;
-	
-	// **DEBUG-LOG: wat krijgen we als raw “from” binnen?**
-	file_put_contents(
-      '/tmp/graphmailer-debug.log',
-      date('c') . " - RAW FROM: {$raw}\n",
-      FILE_APPEND
-	);
-
     // Parse explicit name <email>
     $explicitFrom = null;
     if (preg_match('/^(.*?)<([^>]+)>$/', $raw, $m)) {
       $name    = trim($m[1]);
       $address = trim($m[2]);
-	  
-	  // **DEBUG-LOG: naam en address apart**
-	  file_put_contents(
-        '/tmp/graphmailer-debug.log',
-        date('c') . " - PARSED Name: {$name}, Address: {$address}\n",
-        FILE_APPEND
-      );
-	  
       $explicitFrom = [
         'emailAddress' => [
           'name'    => $name,
@@ -188,15 +165,7 @@ class GraphMailer {
     }
     else {
       // Only address
-      $fromAddress = trim($raw);
-	  
-	  // **DEBUG-LOG: enkel address**
-      file_put_contents(
-        '/tmp/graphmailer-debug.log',
-        date('c') . " - PARSED Address only: {$fromAddress}\n",
-        FILE_APPEND
-      );
-	
+      $fromAddress = trim($raw);	
     }
 
     // URL-encode for Graph path
