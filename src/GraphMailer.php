@@ -172,13 +172,6 @@ class GraphMailer {
     $urlAddress = rawurlencode($fromAddress);
     $url        = "https://graph.microsoft.com/v1.0/users/{$urlAddress}/sendMail";
 
-    // Log the URL
-    file_put_contents(
-      '/tmp/graphmailer-debug.log',
-      date('c') . " - GraphMailer URL: {$url}\n",
-      FILE_APPEND
-    );
-
     // Build message payload
     $message = [
       'subject'      => $subject,
